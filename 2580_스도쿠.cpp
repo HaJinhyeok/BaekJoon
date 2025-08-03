@@ -4,8 +4,42 @@
 #include <iterator>
 
 using namespace std;
-// 처음 입력받을 때 0인 위치 저장할 벡터 하나,
-// priority_queue 하나?
+
+const int n = 9;
+int sudoku[n][n];
+// n-th row에 숫자 i(1<=i<=9)가 존재하는지 정보 담는 2차원 배열 row[n][i]
+bool row[n][n+1];
+// n-th column에 숫자 i(1<=i<=9)가 존재하는지 정보 담는 2차원 배열 column[n][i]
+bool column[n][n+1];
+// n-th block에 숫자 i(1<=i<=9)가 존재하는지 정보 담는 2차원 배열 block[n][i]
+bool block[n][n+1];
+
+// x-th row, y-th column 칸이 몇 번째 block인지 return
+int GetBlockNum(int x, int y)
+{
+	return (x / 3) * 3 + y / 3;
+}
+
+// 0~80번 까지 칸에 숫자를 채워가며 백트래킹
+bool Backtracking(int idx)
+{
+	if (idx >= 81)
+	{
+		for (int i = 0; i < n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				cout << sudoku[i][j] << ' ';
+			}
+			cout << '\n';
+		}
+		return true;
+	}
+	int x = idx / n;
+	int y = idx % n;
+	if (sudoku[x][y] > 0)
+		return true;
+}
 
 // (x,y) 위치를 기준으로 스도쿠 조건 만족하는지 검사
 bool IsPossible(int** board, int x, int y)
