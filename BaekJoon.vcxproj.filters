@@ -27,5 +27,8 @@
     <ClCompile Include="16118_달빛여우.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="2156_포도주시식.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
