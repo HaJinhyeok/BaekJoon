@@ -25,7 +25,7 @@
     <ClCompile Include="16118_달빛여우.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="2156_포도주시식.cpp" />
+    <ClCompile Include="25757_임스와 함께하는 미니게임.cpp" />
     <ClCompile Include="2580_스도쿠.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
