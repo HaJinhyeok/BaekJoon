@@ -28,7 +28,7 @@ int main()
 	int a, b, c;
 	int v1, v2;
 	ll len1, len2, len3, len4, len5;
-	const ll fail = -1;
+	const int fail = -1;
 	cin >> N >> E;
 	vector<vector<int>> adjacent(N + 1, vector<int>(N + 1, INT32_MAX));
 	for (int i = 0; i < E; i++)
@@ -43,15 +43,15 @@ int main()
 	len3 = Dijkstra(adjacent, v1, v2, N);
 	len4 = Dijkstra(adjacent, v1, N, N);
 	len5 = Dijkstra(adjacent, v2, N, N);
-	if (len3 == fail)
+	if (len3 >= INT32_MAX)
 	{
 		cout << fail;
 	}
 	else
 	{
-		ll d1 = (len1 == fail) ? fail : ((len5 == fail) ? fail : len1 + len3 + len5);
-		ll d2 = (len2 == fail) ? fail : ((len4 == fail) ? fail : len2 + len3 + len4);
-		ll d = (d1 == fail) ? ((d2 == fail) ? fail : d2) : ((d2 == fail) ? d1 : min(d1, d2));
+		ll d1 = len1 + len3 + len5;
+		ll d2 = len2 + len3 + len4;
+		ll d = (d1 >= INT32_MAX && d2 >= INT32_MAX) ? fail : min(d1, d2);
 		cout << d;
 	}
 
@@ -64,6 +64,7 @@ ll Dijkstra(vector<vector<int>>& adjacent, int start, int end, int num)
 	vector<ll> distance(num + 1, INT32_MAX);
 	priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> pq;
 	pq.push(make_pair(0, start));
+	distance[start] = 0;
 	while (!pq.empty())
 	{
 		auto [dis, ver] = pq.top();
